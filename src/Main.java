@@ -25,7 +25,7 @@ public class Main {
             // Get user choice
             String choice = manager.scanner.nextLine();
 
-            // Switch (clean version you requested)
+            // Switch loop for menu options
             switch (choice) {
 
                 case "1":

@@ -219,8 +219,10 @@ public class ProductManager {
         }
     }
 
+    // ProductManager.java - Updated searchProduct method
+    // ProductManager.java - Updated searchProduct method
     public void searchProduct() {
-        System.out.println("\nSearch by: 1. ID  2. Product Name");
+        System.out.println("\nSearch by: 1. ID  2. Product Name/Category"); // Updated prompt
         System.out.print("Choice: ");
         String option = scanner.nextLine();
 
@@ -235,16 +237,22 @@ public class ProductManager {
                 System.out.println("No product found with that ID.");
             }
         } else if ("2".equals(option)) {
-            System.out.print("Enter product name (or fragment): ");
+            System.out.print("Enter product name/category (or fragment): ");
             String name = scanner.nextLine().toLowerCase();
             List<Product> matches = new ArrayList<>();
+
             for (Product p : products) {
-                if (p.getModel().toLowerCase().contains(name)) {
+                // FIX: Search in either the Model OR the Category
+                boolean modelMatch = p.getModel().toLowerCase().contains(name);
+                boolean categoryMatch = p.getCategory().toLowerCase().contains(name);
+
+                if (modelMatch || categoryMatch) {
                     matches.add(p);
                 }
             }
+
             if (matches.isEmpty()) {
-                System.out.println("No products found matching that name.");
+                System.out.println("No products found matching that name/category.");
             } else {
                 System.out.println("\n--- Matches ---");
                 for (Product m : matches) System.out.println(m);
